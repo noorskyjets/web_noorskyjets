@@ -211,7 +211,7 @@ export const translations = {
       channelInstagram: 'Instagram',
       instagramHandle: '@noorskyjets',
       missionOptions: {
-        placeholder: 'Selecciona Tipo de Misión',
+        placeholder: 'Consulta',
         options: [
           'Charter de Jets Privados',
           'Viajes y Experiencias VIP',
@@ -325,7 +325,7 @@ export const translations = {
       channelInstagram: 'Instagram',
       instagramHandle: '@noorskyjets',
       missionOptions: {
-        placeholder: 'Choisir le Type de Mission',
+        placeholder: 'Demande',
         options: [
           'Charter de Jets Privés',
           'Voyages & Expériences VIP',
