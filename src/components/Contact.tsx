@@ -64,7 +64,7 @@ const Contact: React.FC = () => {
       const contactType = isEmail(contactInfo) ? 'email' : 'phone';
       const payload = {
         name: name.trim(),
-        contact_info: contactInfo.trim(),
+        email: contactInfo.trim(),
         contact_type: contactType,
         mission: mission || 'Not specified',
         dates: dates || 'TBD',
