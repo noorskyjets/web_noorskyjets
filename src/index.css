@@ -99,6 +99,17 @@
   --divider-soft: rgba(0, 0, 0, 0.08);
 }
 
+/* Fix visibility for intro lead texts in light mode */
+[data-theme='light'] .charter-intro-lead,
+[data-theme='light'] .experiences-intro-lead,
+[data-theme='light'] .advisory-intro,
+[data-theme='light'] .contact-tagline,
+[data-theme='light'] .charter-intro-lead--sticky,
+[data-theme='light'] .experiences-intro-lead--sticky,
+[data-theme='light'] .advisory-intro--sticky {
+  color: #1a1a1a !important;
+}
+
 /* Force Light text/values inside Dark cards even in Light Mode */
 [data-theme='light'] :is(.charter-card, .experience-card, .advisory-panel, .advisory-note-card, .contact-form-card, .contact-channels-card) {
   --color-white: #ffffff;
@@ -794,7 +805,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-title-spaced {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.hero-logo {
+  display: block;
+  width: 3.5rem; /* Mobile size */
+  height: auto;
+  margin: 0.5rem auto 1rem;
+  filter: brightness(1.2) contrast(1.1);
+}
+
+@media (min-width: 1024px) {
+  .hero-logo {
+    width: 7rem; /* Double size on PC */
+    margin-bottom: 2rem;
+  }
 }
 
 .text-gray {
@@ -956,8 +982,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.75;
   color: rgba(5, 5, 5, 0.82);
   max-width: 36rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .charter-intro-lead--sticky {
@@ -1223,69 +1248,42 @@ h1, h2, h3, h4, h5, h6 {
     height: clamp(15rem, 64vw, 20rem);
   }
 
-  .charter-intro .section-title {
-    font-size: clamp(1.65rem, 7.2vw, 2.2rem);
-    white-space: normal;
-    width: 100%;
-    max-width: 100%;
-    line-height: 1.1;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .charter-intro--sticky {
-    padding-bottom: 0.95rem;
-  }
-
-  .charter-intro-lead--sticky {
-    font-size: 0.98rem;
-    line-height: 1.62;
-  }
-
-  .experiences-visual__frame {
-    height: clamp(15rem, 64vw, 20rem);
-  }
-
-  .experiences-intro .section-title {
-    font-size: clamp(1.6rem, 6.8vw, 2.05rem);
-    white-space: normal;
-    width: 100%;
-    max-width: 100%;
-    line-height: 1.1;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .experiences-intro--sticky {
-    padding-bottom: 0.95rem;
-  }
-
-  .experiences-intro-lead--sticky {
-    font-size: 0.96rem;
-    line-height: 1.62;
-  }
-
-  .advisory-visual__frame {
-    height: clamp(15rem, 64vw, 20rem);
-  }
-
+  .charter-intro .section-title,
+  .experiences-intro .section-title,
   .advisory-header .section-title {
-    font-size: clamp(1.6rem, 6.9vw, 2.1rem);
-    white-space: normal;
+    font-size: clamp(1.65rem, 7.2vw, 2.2rem) !important;
+    white-space: normal !important;
+    display: block !important;
     width: 100%;
     max-width: 100%;
     line-height: 1.1;
+    letter-spacing: 0.12em !important;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
   }
 
+  .charter-intro--sticky,
+  .experiences-intro--sticky,
   .advisory-header--sticky {
     padding-bottom: 0.95rem;
   }
 
+  .charter-intro-lead,
+  .experiences-intro-lead,
+  .advisory-intro,
+  .charter-intro-lead--sticky,
+  .experiences-intro-lead--sticky,
   .advisory-intro--sticky {
-    font-size: 0.98rem;
-    line-height: 1.62;
+    font-size: 0.95rem !important; /* Unified mobile size */
+    line-height: 1.65 !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    text-align: left !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    display: block !important;
   }
 
   .section-compact-card {
@@ -1431,8 +1429,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .experiences-intro-lead {
-  font-size: 1.0625rem;
-  line-height: 1.8;
+  font-size: 1.125rem;
+  line-height: 1.75;
   color: var(--color-gray);
   max-width: 42rem;
   margin: 0 auto;
@@ -1823,8 +1821,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .advisory-intro {
-  font-size: 1.0625rem;
-  line-height: 1.8;
+  font-size: 1.125rem;
+  line-height: 1.75;
   color: var(--color-gray);
   margin: 0 0 2rem;
 }
@@ -1832,7 +1830,7 @@ h1, h2, h3, h4, h5, h6 {
 .advisory-intro--sticky {
   color: rgba(255, 255, 255, 0.92);
   text-align: center;
-  max-width: 44rem;
+  max-width: 58rem; /* Increased to fit 2 lines on desktop */
   margin: 1rem auto 1.15rem;
   text-wrap: balance;
 }
@@ -1982,6 +1980,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact-header .section-title {
   margin-bottom: 1.25rem;
+  color: var(--color-gold);
 }
 
 .contact-tagline {
@@ -2028,7 +2027,7 @@ h1, h2, h3, h4, h5, h6 {
     grid-column: 1 / -1;
     order: 2; /* Text in the middle */
     text-align: center;
-    font-size: 1.05rem; /* Larger font */
+    font-size: 0.875rem; /* Matched to Charter size */
     line-height: 1.6;
     color: var(--color-gray);
     padding: 1.5rem 1rem; /* More vertical separation */
@@ -2509,7 +2508,10 @@ textarea.contact-field {
 
   .hero-section .text-6xl,
   .hero-section .md\:text-9xl {
-    font-size: clamp(1.55rem, 8.8vw, 2.15rem);
+    font-size: clamp(2rem, 11.5vw, 4rem); /* Slightly reduced from 13vw to avoid overflow */
+    letter-spacing: 0.02em;
+    width: 100%;
+    overflow: hidden;
   }
 
   .hero-tagline {
@@ -2517,7 +2519,7 @@ textarea.contact-field {
     letter-spacing: 0.08em;
     line-height: 1.38;
     max-width: 17.5rem;
-    margin-top: 3.6rem;
+    margin-top: 0.65rem; /* Reduced from 3.6rem to bring it closer to the logo */
   }
 
   .hero-tagline-sub {

@@ -29,6 +29,14 @@ const Hero: React.FC = () => {
         >
           <h2 className="hero-eyebrow font-bold uppercase">{t.hero.eyebrow}</h2>
           <h1 className="text-6xl md:text-9xl text-gold hero-title-spaced">NoorSkyJets</h1>
+          <motion.img 
+            src="/assets/logo.png" 
+            alt="NoorSkyJets Logo" 
+            className="hero-logo"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          />
           <p className="hero-tagline text-gray">
             {t.hero.tagline} <br />
             <span className="hero-tagline-sub">{t.hero.subtitle}</span>
