@@ -149,6 +149,9 @@ const Contact: React.FC = () => {
           </div>
 
           <div className="contact-layout">
+            <div className="contact-mobile-lead">
+              {t.contact.formMobileLead}
+            </div>
             <motion.div
               className="contact-layout__cell contact-layout__cell--form"
               initial={{ opacity: 0, y: 22 }}

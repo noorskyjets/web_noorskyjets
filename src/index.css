@@ -2018,7 +2018,28 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 1023px) {
   .contact-layout__cell.contact-layout__cell--form {
-    order: 2; /* Show form below contact tiles on mobile */
+    order: 3; /* Form below everything */
+  }
+  .contact-aside.contact-aside--channels {
+    order: 1; /* Tiles first */
+  }
+  .contact-mobile-lead {
+    display: block;
+    grid-column: 1 / -1;
+    order: 2; /* Text in the middle */
+    text-align: center;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-gray);
+    padding: 0 1rem;
+    margin-top: -1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact-mobile-lead {
+    display: none;
   }
 }
 
