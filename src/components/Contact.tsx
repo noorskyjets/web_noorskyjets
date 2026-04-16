@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { CONTACT_FORM_READY, WEB3FORMS_ACCESS_KEY } from '../config/contact';
+import { CONTACT_FORM_READY, WEB3FORMS_ACCESS_KEY, CONTACT_WEBHOOK_URL } from '../config/contact';
 
 const PRIORITY_PHONE_DISPLAY = '+44 7537 182175';
 const PRIORITY_PHONE_TEL = 'tel:+447537182175';
@@ -28,14 +28,17 @@ const InstagramIcon = () => (
   </svg>
 );
 
-const emailLooksValid = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+const isEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+const isPhone = (value: string) => /^[+0-9\s-]{7,20}$/.test(value.trim());
+
+const validateContact = (value: string) => isEmail(value) || isPhone(value);
 
 type Feedback = { kind: 'success' | 'error' | 'info'; text: string };
 
 const Contact: React.FC = () => {
   const { t } = useLanguage();
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [contactInfo, setContactInfo] = useState('');
   const [mission, setMission] = useState('');
   const [dates, setDates] = useState('');
   const [requirements, setRequirements] = useState('');
@@ -51,7 +54,7 @@ const Contact: React.FC = () => {
       return;
     }
 
-    if (!name.trim() || !emailLooksValid(email)) {
+    if (!name.trim() || !validateContact(contactInfo)) {
       setFeedback({ kind: 'error', text: t.contact.formValidation });
       return;
     }
@@ -65,27 +68,60 @@ const Contact: React.FC = () => {
 
     setSending(true);
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: t.contact.formSubject,
-          from_name: name.trim(),
-          email: email.trim(),
-          message,
-        }),
-      });
-      const data = (await res.json()) as { success?: boolean; message?: string };
-      if (data.success) {
+      const contactType = isEmail(contactInfo) ? 'email' : 'phone';
+      const payload = {
+        name: name.trim(),
+        contact_info: contactInfo.trim(),
+        contact_type: contactType,
+        mission: mission || 'Not specified',
+        dates: dates || 'TBD',
+        requirements: requirements.trim(),
+        submitted_at: new Date().toISOString(),
+      };
+
+      let success = false;
+      let errorMsg = '';
+
+      if (CONTACT_WEBHOOK_URL) {
+        // Option 1: Automation Webhook (Make.com / Zapier)
+        const res = await fetch(CONTACT_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        success = res.ok;
+      } else if (WEB3FORMS_ACCESS_KEY) {
+        // Option 2: Fallback to Web3Forms
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject: t.contact.formSubject,
+            from_name: name.trim(),
+            email: contactInfo.trim(),
+            message: [
+              `Mission: ${payload.mission || '—'}`,
+              `Preferred dates: ${payload.dates || '—'}`,
+              '',
+              payload.requirements || '—',
+            ].join('\n'),
+          }),
+        });
+        const data = (await res.json()) as { success?: boolean; message?: string };
+        success = !!data.success;
+        errorMsg = data.message || '';
+      }
+
+      if (success) {
         setName('');
-        setEmail('');
+        setContactInfo('');
         setMission('');
         setDates('');
         setRequirements('');
         setFeedback({ kind: 'success', text: t.contact.formSuccess });
       } else {
-        setFeedback({ kind: 'error', text: data.message || t.contact.formError });
+        setFeedback({ kind: 'error', text: errorMsg || t.contact.formError });
       }
     } catch {
       setFeedback({ kind: 'error', text: t.contact.formError });
@@ -139,30 +175,35 @@ const Contact: React.FC = () => {
                       autoComplete="name"
                     />
                     <input
-                      type="email"
-                      name="email"
-                      value={email}
-                      onChange={(ev) => setEmail(ev.target.value)}
+                      type="text"
+                      name="contact"
+                      value={contactInfo}
+                      onChange={(ev) => setContactInfo(ev.target.value)}
                       placeholder={t.contact.email}
                       className="contact-field"
-                      autoComplete="email"
                     />
                   </div>
                   <div className="contact-form__row contact-form__row--split">
-                    <input
-                      type="text"
+                    <select
                       name="mission"
                       value={mission}
                       onChange={(ev) => setMission(ev.target.value)}
-                      placeholder={t.contact.mission}
-                      className="contact-field"
-                    />
+                      className="contact-field contact-field--select"
+                    >
+                      <option value="" disabled>
+                        {t.contact.missionOptions.placeholder}
+                      </option>
+                      {t.contact.missionOptions.options.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
                     <input
-                      type="text"
+                      type="date"
                       name="dates"
                       value={dates}
                       onChange={(ev) => setDates(ev.target.value)}
-                      placeholder={t.contact.dates}
                       className="contact-field"
                     />
                   </div>

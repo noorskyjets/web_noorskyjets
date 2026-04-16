@@ -61,31 +61,33 @@
   --color-black-light: #f0f0f0;
   --color-white: #0a0a0a;
   --color-gray: #4a4a4a;
-  --surface-charter-card: linear-gradient(165deg, #f0f0f0 0%, #fafafa 42%, #ffffff 100%);
-  --shadow-charter: 0 12px 40px rgba(0, 0, 0, 0.06);
-  --surface-experience-card: linear-gradient(168deg, #ececec 0%, #f7f7f7 38%, #ffffff 100%);
-  --shadow-experience: 0 18px 44px rgba(0, 0, 0, 0.07);
+
+  /* Surfaces for cards: Restored to ALWAYS-DARK as per user request */
+  --surface-charter-card: linear-gradient(165deg, #181818 0%, #0c0c0c 42%, #050505 100%);
+  --shadow-charter: 0 16px 48px rgba(0, 0, 0, 0.65);
+  --surface-experience-card: linear-gradient(168deg, #181818 0%, #0c0c0c 38%, #050505 100%);
+  --shadow-experience: 0 24px 56px rgba(0, 0, 0, 0.6);
   --experience-fade-mask: linear-gradient(
     to top,
-    rgba(255, 255, 255, 0.96) 0%,
-    rgba(255, 255, 255, 0.62) 38%,
-    rgba(255, 255, 255, 0.12) 65%,
+    rgba(5, 5, 5, 0.97) 0%,
+    rgba(5, 5, 5, 0.55) 38%,
+    rgba(5, 5, 5, 0.12) 65%,
     transparent 100%
   );
-  --shine-mid: rgba(0, 0, 0, 0.05);
-  --surface-advisory-panel: linear-gradient(168deg, #f0f0f0 0%, #fafafa 42%, #ffffff 100%);
-  --shadow-advisory: 0 18px 44px rgba(0, 0, 0, 0.07);
-  --surface-advisory-note: linear-gradient(172deg, #ececec 0%, #f5f5f5 50%, #ffffff 100%);
-  --shadow-advisory-note: 0 18px 44px rgba(0, 0, 0, 0.07);
-  --surface-contact: linear-gradient(168deg, #f4f4f4 0%, #fafafa 48%, #ffffff 100%);
-  --shadow-contact: 0 20px 48px rgba(0, 0, 0, 0.06);
-  --surface-icon-box: #e8e8e8;
-  --field-fill: rgba(255, 255, 255, 0.95);
-  --field-fill-hover: #ffffff;
-  --placeholder-color: rgba(60, 60, 60, 0.65);
-  --advisory-li-bg: rgba(0, 0, 0, 0.04);
-  --advisory-li-hover-bg: rgba(202, 160, 82, 0.12);
-  --advisory-li-text: rgba(20, 20, 20, 0.92);
+  --shine-mid: rgba(255, 255, 255, 0.04);
+  --surface-advisory-panel: linear-gradient(168deg, #181818 0%, #0c0c0c 42%, #050505 100%);
+  --shadow-advisory: 0 24px 56px rgba(0, 0, 0, 0.58);
+  --surface-advisory-note: linear-gradient(172deg, #141414 0%, #0a0a0a 50%, #060606 100%);
+  --shadow-advisory-note: 0 24px 56px rgba(0, 0, 0, 0.55);
+  --surface-contact: linear-gradient(168deg, #161616 0%, #0a0a0a 48%, #050505 100%);
+  --shadow-contact: 0 24px 56px rgba(0, 0, 0, 0.55);
+  --surface-icon-box: #080808;
+
+  /* Form fields always dark */
+  --field-fill: rgba(5, 5, 5, 0.65);
+  --field-fill-hover: rgba(8, 8, 8, 0.85);
+  --placeholder-color: rgba(160, 160, 160, 0.75);
+
   --glass-bg: rgba(255, 255, 255, 0.92);
   --scrollbar-track: #f0f0f0;
   --hero-rings-opacity: 0.11;
@@ -94,15 +96,33 @@
   --nav-flag-border-hover: rgba(0, 0, 0, 0.22);
   --footer-border: rgba(0, 0, 0, 0.08);
   --contact-aside-border: rgba(202, 160, 82, 0.22);
-  --experience-desc: rgba(55, 55, 55, 0.95);
-  --experience-desc-hover: #1a1a1a;
-  --charter-desc-hover: #333333;
-  --status-info-bg: rgba(0, 0, 0, 0.04);
-  --contact-channel-value: rgba(15, 15, 15, 0.92);
   --divider-soft: rgba(0, 0, 0, 0.08);
-  --contact-channel-icon-bg: rgba(0, 0, 0, 0.06);
-  --advisory-note-body-hover: #333333;
-  --contact-aside-link: rgba(25, 25, 25, 0.9);
+}
+
+/* Force Light text/values inside Dark cards even in Light Mode */
+[data-theme='light'] :is(.charter-card, .experience-card, .advisory-panel, .advisory-note-card, .contact-form-card, .contact-channels-card) {
+  --color-white: #ffffff;
+  --color-gray: #a0a0a0;
+  --experience-desc: rgba(180, 180, 180, 0.98);
+  --experience-desc-hover: #ffffff;
+  --advisory-li-text: rgba(245, 245, 245, 0.95);
+  --advisory-li-bg: rgba(0, 0, 0, 0.4);
+  --advisory-li-hover-bg: rgba(202, 160, 82, 0.1);
+  --contact-channel-value: rgba(245, 245, 245, 0.95);
+  --contact-aside-link: rgba(235, 235, 235, 0.92);
+  --status-info-bg: rgba(0, 0, 0, 0.35);
+  --divider-soft: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='light'] .site-nav::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.84) 0%,
+    rgba(255, 255, 255, 0.54) 34%,
+    rgba(255, 255, 255, 0.28) 62%,
+    rgba(255, 255, 255, 0.1) 82%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 * {
@@ -2083,6 +2103,15 @@ h1, h2, h3, h4, h5, h6 {
 .contact-field:focus {
   border-color: var(--color-gold);
   box-shadow: 0 0 0 1px rgba(202, 160, 82, 0.2), 0 0 24px rgba(202, 160, 82, 0.08);
+}
+
+/* Prevent browser yellow autofill background */
+.contact-field:-webkit-autofill,
+.contact-field:-webkit-autofill:hover, 
+.contact-field:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-white) !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--field-fill) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 textarea.contact-field {
