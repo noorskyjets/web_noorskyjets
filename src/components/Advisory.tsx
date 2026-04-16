@@ -1,0 +1,105 @@
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+
+const Advisory: React.FC = () => {
+  const { t } = useLanguage();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+  const visualY = useTransform(scrollYProgress, [0, 1], [-16, 30]);
+  const listItems = t.advisory.list;
+  const mobileKeyPoints = listItems.slice(0, 3);
+
+  return (
+    <section id="advisory" ref={sectionRef} className="section section--advisory relative">
+      <div className="container">
+        <motion.div
+          className="advisory-visual"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="advisory-header advisory-header--sticky text-center">
+            <h2 className="section-title text-4xl">{t.advisory.title}</h2>
+            <motion.p
+              className="advisory-intro advisory-intro--sticky"
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              {t.advisory.intro}
+            </motion.p>
+          </div>
+          <div className="advisory-visual__frame">
+            <motion.div className="advisory-visual__media" style={{ y: visualY }} aria-hidden />
+            <span className="advisory-visual__veil" aria-hidden />
+          </div>
+        </motion.div>
+
+        <div className="advisory-grid advisory-grid--desktop">
+          <motion.div
+            className="advisory-panel"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+          >
+            <span className="advisory-panel__accent" aria-hidden />
+            <span className="advisory-panel__glow" aria-hidden />
+            <div className="advisory-panel__body">
+              <ul className="advisory-list">
+                {listItems.map((item, idx) => (
+                  <li key={idx} className="advisory-list__item">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="advisory-note-wrap"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.12 }}
+          >
+            <article className="advisory-note-card">
+              <span className="advisory-note-card__accent" aria-hidden />
+              <span className="advisory-note-card__corner" aria-hidden />
+              <h3 className="advisory-note-card__title">{t.advisory.noteTitle}</h3>
+              <p className="advisory-note-card__body">{t.advisory.note}</p>
+            </article>
+          </motion.div>
+        </div>
+
+        <motion.div
+          className="section-compact advisory-compact"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+        >
+          <div className="section-compact-card advisory-compact-card">
+            <span className="section-compact-card__accent" aria-hidden />
+            <ul className="section-compact-list">
+              {mobileKeyPoints.map((item, idx) => (
+                <li key={idx} className="section-compact-list__item">
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <span className="section-compact-card__corner" aria-hidden />
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default Advisory;

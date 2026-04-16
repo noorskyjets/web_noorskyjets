@@ -1,0 +1,101 @@
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Star, Clock, Shield, Award } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+
+const Charter: React.FC = () => {
+  const { t } = useLanguage();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+  const visualY = useTransform(scrollYProgress, [0, 1], [-16, 30]);
+
+  const features = [
+    { icon: <Award />, title: t.charter.features[0].title, desc: t.charter.features[0].desc },
+    { icon: <Star />, title: t.charter.features[1].title, desc: t.charter.features[1].desc },
+    { icon: <Clock />, title: t.charter.features[2].title, desc: t.charter.features[2].desc },
+    { icon: <Shield />, title: t.charter.features[3].title, desc: t.charter.features[3].desc },
+  ];
+
+  return (
+    <section id="charter" ref={sectionRef} className="section section--charter charter-section-bg">
+      <div className="container">
+        <motion.div
+          className="charter-visual"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="charter-intro charter-intro--sticky">
+            <h2 className="section-title text-4xl text-center">
+              {t.charter.title}
+            </h2>
+            <motion.p
+              className="charter-intro-lead charter-intro-lead--sticky"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
+            >
+              {t.charter.intro}
+            </motion.p>
+          </div>
+          <div className="charter-visual__frame">
+            <motion.div className="charter-visual__media" style={{ y: visualY }} aria-hidden />
+            <span className="charter-visual__veil" aria-hidden />
+          </div>
+        </motion.div>
+
+        <div className="charter-premium-grid charter-premium-grid--desktop">
+          {features.map((feature, idx) => (
+            <motion.article
+              key={idx}
+              className="charter-card"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: idx * 0.08 }}
+            >
+              <span className="charter-card__shine" aria-hidden />
+              <span className="charter-card__vignette" aria-hidden />
+              <span className="charter-card__accent" aria-hidden />
+
+              <div className="charter-card__body">
+                <div className="charter-card__icon">{feature.icon}</div>
+                <h3 className="charter-card__title">{feature.title}</h3>
+                <p className="charter-card__desc">{feature.desc}</p>
+              </div>
+
+              <span className="charter-card__corner" aria-hidden />
+            </motion.article>
+          ))}
+        </div>
+
+        <motion.div
+          className="section-compact charter-compact"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45 }}
+        >
+          <div className="section-compact-card charter-compact-card">
+            <span className="section-compact-card__accent" aria-hidden />
+            <ul className="section-compact-list">
+              {features.map((feature, idx) => (
+                <li key={idx} className="section-compact-list__item">
+                  {feature.title}
+                </li>
+              ))}
+            </ul>
+            <span className="section-compact-card__corner" aria-hidden />
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default Charter;
