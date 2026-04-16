@@ -2016,10 +2016,9 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 0;
 }
 
-/* Form only on desktop: later unscoped .contact-layout__cell { display:flex } was overriding a single-class hide inside max-width:768. */
 @media (max-width: 1023px) {
   .contact-layout__cell.contact-layout__cell--form {
-    display: none;
+    order: 2; /* Show form below contact tiles on mobile */
   }
 }
 

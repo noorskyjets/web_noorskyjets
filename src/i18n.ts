@@ -193,7 +193,7 @@ export const translations = {
         'Asesoría discreta en estrategia de flota y decisiones de compra/venta. Coordinación tipo concierge e introducciones con operadores y vendedores de confianza. Marco claro: disponibilidad, precios y contratos los confirman las partes involucradas.',
     },
     contact: {
-      title: 'Consultar Ahora',
+      title: 'Contacto',
       tagline: 'Simple. Discreto. Eficiente.',
       name: 'Tu Nombre',
       email: 'Correo electrónico o teléfono',
