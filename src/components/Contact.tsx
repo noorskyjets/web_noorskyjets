@@ -59,13 +59,6 @@ const Contact: React.FC = () => {
       return;
     }
 
-    const message = [
-      `Mission: ${mission.trim() || '—'}`,
-      `Preferred dates: ${dates.trim() || '—'}`,
-      '',
-      requirements.trim() || '—',
-    ].join('\n');
-
     setSending(true);
     try {
       const contactType = isEmail(contactInfo) ? 'email' : 'phone';
