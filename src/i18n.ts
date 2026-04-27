@@ -44,9 +44,11 @@ export const translations = {
       ],
     },
     experiences: {
-      title: 'VIP Travel & Experiences',
-      intro:
-        'Curated access and seamless logistics for high-end events and leisure. We provide one point of contact for your entire end-to-end itinerary.',
+      title: 'VIP TRAVEL & EXPERIENCES',
+      intro: {
+        line1: 'Extraordinary moments.',
+        line2: 'Flawlessly orchestrated.'
+      },
       concepts: [
         {
           name: 'Fashion Week Sprint',
@@ -66,9 +68,11 @@ export const translations = {
       ],
     },
     advisory: {
-      title: 'Aircraft Advisory',
-      intro:
-        "Structured support for buy/sell conversations and fleet decisions-handled discreetly. We provide concierge-level coordination and introductions to the industry's most trusted operators and sellers.",
+      title: 'AIRCRAFT ADVISORY',
+      intro: {
+        line1: 'The right aircraft.',
+        line2: 'The right decision.'
+      },
       list: [
         'Fleet strategy & utilization guidance',
         'Structured support for buy/sell discussions',
@@ -160,9 +164,11 @@ export const translations = {
       ],
     },
     experiences: {
-      title: 'Viajes y Experiencias VIP',
-      intro:
-        'Acceso curado y logística impecable para eventos premium y ocio. Ofrecemos un único punto de contacto para todo tu itinerario de principio a fin.',
+      title: 'VIAJES Y EXPERIENCIAS VIP',
+      intro: {
+        line1: 'Momentos extraordinarios.',
+        line2: 'Orquestados a la perfección.'
+      },
       concepts: [
         {
           name: 'Sprint Fashion Week',
@@ -182,9 +188,11 @@ export const translations = {
       ],
     },
     advisory: {
-      title: 'Asesoría de Aeronaves',
-      intro:
-        'Soporte estructurado para conversaciones de compra/venta y decisiones de flota, gestionado con discreción. Coordinamos a nivel concierge e introducciones con operadores y vendedores de mayor confianza.',
+      title: 'ASESORÍA DE AERONAVES',
+      intro: {
+        line1: 'La aeronave adecuada.',
+        line2: 'La decisión correcta.'
+      },
       list: [
         'Estrategia de flota y optimización de uso',
         'Soporte estructurado en conversaciones de compra/venta',
@@ -267,7 +275,7 @@ export const translations = {
         },
         {
           title: 'Missions Sur Mesure',
-          desc: 'Des solutions de voyage concues avec precision selon vos exigences.',
+          desc: 'Des solutions de voyage concues with precision selon vos exigences.',
         },
         {
           title: 'Logistique Fluide',
@@ -276,9 +284,11 @@ export const translations = {
       ],
     },
     experiences: {
-      title: 'Voyages et Experiences VIP',
-      intro:
-        'Acces sur mesure et logistique sans faille pour evenements haut de gamme et loisirs. Un interlocuteur unique pour tout votre itineraire de bout en bout.',
+      title: 'VOYAGES ET EXPERIENCES VIP',
+      intro: {
+        line1: 'Des moments extraordinaires.',
+        line2: 'Orchestrés à la perfection.'
+      },
       concepts: [
         {
           name: 'Sprint Fashion Week',
@@ -298,9 +308,11 @@ export const translations = {
       ],
     },
     advisory: {
-      title: 'Conseil Aeronautique',
-      intro:
-        "Un accompagnement structure pour les echanges achat/vente et les decisions de flotte, avec discretion. Nous assurons una coordination de niveau conciergerie et des introductions aupres d'operateurs et vendeurs de confiance.",
+      title: 'CONSEIL AERONAUTIQUE',
+      intro: {
+        line1: 'Le bon appareil.',
+        line2: 'La bonne décision.'
+      },
       list: [
         "Strategie de flotte et optimisation d'utilisation",
         'Support structure pour les discussions achat/vente',
@@ -346,7 +358,7 @@ export const translations = {
       formError: "L'envoi a echoue. Reessayez ou contactez-nous par email.",
       formNotConfigured:
         "Formulaire non configure. Creez .env.local et definissez VITE_WEB3FORMS_ACCESS_KEY (voir .env.example).",
-      formValidation: 'Veuillez indiquer votre nom et une adresse de contact valide.',
+      formValidation: 'Veuillez indicar votre nom et une adresse de contact valide.',
     },
   },
 } as const;
