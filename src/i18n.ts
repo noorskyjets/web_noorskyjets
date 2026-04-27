@@ -19,9 +19,11 @@ export const translations = {
       subtitle: 'A streamlined process designed for decision-makers.',
     },
     charter: {
-      title: 'Private Jet Charter',
-      intro:
-        'Unrivaled mobility meets absolute discretion. We curate bespoke aviation solutions for those who demand precision, safety, and a seamless global reach.',
+      title: 'PRIVATE JET CHARTER',
+      intro: {
+        line1: "The world doesn't wait.",
+        line2: 'Neither should you.'
+      },
       features: [
         {
           title: 'Global Mobility',
@@ -133,9 +135,11 @@ export const translations = {
       subtitle: 'Un proceso simplificado, diseñado para quienes toman decisiones.',
     },
     charter: {
-      title: 'Charter de Jets Privados',
-      intro:
-        'Movilidad incomparable y discreción absoluta. Diseñamos soluciones de aviación a medida para quienes exigen precisión, seguridad y alcance global sin fricción.',
+      title: 'CHARTER DE JETS PRIVADOS',
+      intro: {
+        line1: 'El mundo no espera.',
+        line2: 'Tú tampoco deberías.'
+      },
       features: [
         {
           title: 'Movilidad Global',
@@ -247,9 +251,11 @@ export const translations = {
       subtitle: 'Un processus fluide, concu pour les decideurs.',
     },
     charter: {
-      title: 'Charter de Jets Prives',
-      intro:
-        'Une mobilite exceptionnelle et une discretion absolue. Nous concevons des solutions aeriennes sur mesure pour celles et ceux qui exigent precision, securite et portee mondiale.',
+      title: 'CHARTER DE JETS PRIVÉS',
+      intro: {
+        line1: "Le monde n'attend pas.",
+        line2: 'Vous non plus.'
+      },
       features: [
         {
           title: 'Mobilite Globale',
@@ -294,7 +300,7 @@ export const translations = {
     advisory: {
       title: 'Conseil Aeronautique',
       intro:
-        "Un accompagnement structure pour les echanges achat/vente et les decisions de flotte, avec discretion. Nous assurons une coordination de niveau conciergerie et des introductions aupres d'operateurs et vendeurs de confiance.",
+        "Un accompagnement structure pour les echanges achat/vente et les decisions de flotte, avec discretion. Nous assurons una coordination de niveau conciergerie et des introductions aupres d'operateurs et vendeurs de confiance.",
       list: [
         "Strategie de flotte et optimisation d'utilisation",
         'Support structure pour les discussions achat/vente',
@@ -317,7 +323,7 @@ export const translations = {
       requirements: 'Exigences...',
       submit: 'Envoyer la Demande',
       channelsBlockTitle: 'Canaux directs',
-      channelsBlockLead: 'Appel, WhatsApp ou email — le canal qui vous convient pour une coordination prioritaire.',
+      channelsBlockLead: 'Appel, WhatsApp ou email — le canal qui vous convient pour une coordination prioritaria.',
       channelCall: 'Appel',
       channelWhatsapp: 'WhatsApp',
       channelWhatsappAction: 'Ouvrir le chat',
