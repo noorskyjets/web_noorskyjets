@@ -29,14 +29,14 @@ const InstagramIcon = () => (
 );
 
 const isEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
-const isPhone = (value: string) => /^[+0-9\s-]{7,20}$/.test(value.trim());
-
+const isPhone = (value: string) => /^[+0-9\s\-()]{7,20}$/.test(value.trim());
 const validateContact = (value: string) => isEmail(value) || isPhone(value);
 
 type Feedback = { kind: 'success' | 'error' | 'info'; text: string };
 
 const Contact: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
   const [name, setName] = useState('');
   const [contactInfo, setContactInfo] = useState('');
   const [mission, setMission] = useState('');
@@ -60,15 +60,22 @@ const Contact: React.FC = () => {
     }
 
     setSending(true);
+
     try {
-      const contactType = isEmail(contactInfo) ? 'email' : 'phone';
+      const cleanName = name.trim();
+      const contactValue = contactInfo.trim();
+      const contactType = isEmail(contactValue) ? 'email' : 'phone';
+
       const payload = {
-        name: name.trim(),
-        email: contactInfo.trim(),
+        name: cleanName,
+        contact: contactValue,
+        email: contactType === 'email' ? contactValue : '',
+        phone: contactType === 'phone' ? contactValue : '',
         contact_type: contactType,
+        language: language,
         mission: mission || 'Not specified',
         dates: dates || 'TBD',
-        requirements: requirements.trim(),
+        requirements: requirements.trim() || '',
         submitted_at: new Date().toISOString(),
       };
 
@@ -76,7 +83,6 @@ const Contact: React.FC = () => {
       let errorMsg = '';
 
       if (CONTACT_WEBHOOK_URL) {
-        // Option 1: Automation Webhook (Make.com / Zapier)
         const res = await fetch(CONTACT_WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -84,23 +90,26 @@ const Contact: React.FC = () => {
         });
         success = res.ok;
       } else if (WEB3FORMS_ACCESS_KEY) {
-        // Option 2: Fallback to Web3Forms
         const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
             access_key: WEB3FORMS_ACCESS_KEY,
             subject: t.contact.formSubject,
-            from_name: name.trim(),
-            email: contactInfo.trim(),
+            from_name: cleanName,
+            email: OFFICE_EMAIL,
             message: [
-              `Mission: ${payload.mission || '—'}`,
-              `Preferred dates: ${payload.dates || '—'}`,
+              `Language: ${language.toUpperCase()}`,
+              `Contact type: ${payload.contact_type}`,
+              `Contact: ${payload.contact}`,
+              `Mission: ${payload.mission}`,
+              `Preferred dates: ${payload.dates}`,
               '',
               payload.requirements || '—',
             ].join('\n'),
           }),
         });
+
         const data = (await res.json()) as { success?: boolean; message?: string };
         success = !!data.success;
         errorMsg = data.message || '';
@@ -145,6 +154,7 @@ const Contact: React.FC = () => {
             <div className="contact-mobile-lead">
               {t.contact.formMobileLead}
             </div>
+
             <motion.div
               className="contact-layout__cell contact-layout__cell--form"
               initial={{ opacity: 0, y: 22 }}
@@ -160,6 +170,7 @@ const Contact: React.FC = () => {
                       {feedback.text}
                     </p>
                   ) : null}
+
                   <div className="contact-form__row contact-form__row--split">
                     <input
                       type="text"
@@ -170,15 +181,18 @@ const Contact: React.FC = () => {
                       className="contact-field"
                       autoComplete="name"
                     />
+
                     <input
                       type="text"
                       name="contact"
                       value={contactInfo}
                       onChange={(ev) => setContactInfo(ev.target.value)}
-                      placeholder={t.contact.email}
+                      placeholder="Email address or phone number"
                       className="contact-field"
+                      autoComplete="email"
                     />
                   </div>
+
                   <div className="contact-form__row contact-form__row--split">
                     <select
                       name="mission"
@@ -195,6 +209,7 @@ const Contact: React.FC = () => {
                         </option>
                       ))}
                     </select>
+
                     <input
                       type="date"
                       name="dates"
@@ -203,6 +218,7 @@ const Contact: React.FC = () => {
                       className="contact-field"
                     />
                   </div>
+
                   <textarea
                     name="requirements"
                     rows={5}
@@ -211,7 +227,12 @@ const Contact: React.FC = () => {
                     placeholder={t.contact.requirements}
                     className="contact-field"
                   />
-                  <button type="submit" className="btn-primary contact-form__submit" disabled={sending}>
+
+                  <button
+                    type="submit"
+                    className="btn-primary contact-form__submit"
+                    disabled={sending}
+                  >
                     {sending ? t.contact.formSending : t.contact.submit}
                   </button>
                 </form>
@@ -229,6 +250,7 @@ const Contact: React.FC = () => {
                 <span className="contact-channels-card__accent" aria-hidden />
                 <h3 className="contact-channels-card__title">{t.contact.channelsBlockTitle}</h3>
                 <p className="contact-channels-card__lead">{t.contact.channelsBlockLead}</p>
+
                 <ul className="contact-channel-list">
                   <li className="contact-channel">
                     <div className="contact-channel__icon">
@@ -241,6 +263,7 @@ const Contact: React.FC = () => {
                       </a>
                     </div>
                   </li>
+
                   <li className="contact-channel">
                     <div className="contact-channel__icon">
                       <WhatsAppIcon />
@@ -257,6 +280,7 @@ const Contact: React.FC = () => {
                       </a>
                     </div>
                   </li>
+
                   <li className="contact-channel">
                     <div className="contact-channel__icon">
                       <Mail aria-hidden />
@@ -268,6 +292,7 @@ const Contact: React.FC = () => {
                       </a>
                     </div>
                   </li>
+
                   <li className="contact-channel">
                     <div className="contact-channel__icon">
                       <InstagramIcon />
