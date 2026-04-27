@@ -23,6 +23,19 @@ const Advisory: React.FC = () => {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
+          <div className="advisory-header advisory-header--sticky text-center">
+            <span className="charter-intro__eyebrow">{t.advisory.title}</span>
+            <motion.h2
+              className="charter-intro__tagline"
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.15 }}
+            >
+              <span className="charter-intro__line-1">{t.advisory.intro.line1}</span>
+              <span className="charter-intro__line-2">{t.advisory.intro.line2}</span>
+            </motion.h2>
+          </div>
           <div className="advisory-visual__frame">
             <motion.div className="advisory-visual__media" style={{ y: visualY }} aria-hidden />
             <span className="advisory-visual__veil" aria-hidden />
