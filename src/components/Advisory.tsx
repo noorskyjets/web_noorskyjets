@@ -9,7 +9,9 @@ const Advisory: React.FC = () => {
     target: sectionRef,
     offset: ['start end', 'end start'],
   });
-  const visualY = useTransform(scrollYProgress, [0, 1], [-16, 30]);
+  const visualY = useTransform(scrollYProgress, [0, 1], [-30, 60]);
+  const visualScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.04, 1.02, 1.0]);
+  const veilOpacity = useTransform(scrollYProgress, [0, 0.6], [0.45, 0.72]);
   const listItems = t.advisory.list;
   const mobileKeyPoints = listItems.slice(0, 3);
 
@@ -37,8 +39,16 @@ const Advisory: React.FC = () => {
             </motion.h2>
           </div>
           <div className="advisory-visual__frame">
-            <motion.div className="advisory-visual__media" style={{ y: visualY }} aria-hidden />
-            <span className="advisory-visual__veil" aria-hidden />
+            <motion.div
+              className="advisory-visual__media"
+              style={{ y: visualY, scale: visualScale }}
+              aria-hidden
+            />
+            <motion.span
+              className="advisory-visual__veil"
+              style={{ opacity: veilOpacity }}
+              aria-hidden
+            />
           </div>
         </motion.div>
 
@@ -68,7 +78,7 @@ const Advisory: React.FC = () => {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.12 }}
+            transition={{ duration: 0.55, delay: 0.14 }}
           >
             <article className="advisory-note-card">
               <span className="advisory-note-card__accent" aria-hidden />
