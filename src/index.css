@@ -546,10 +546,12 @@ h1, h2, h3, h4, h5, h6 {
 
   .hero-scroll-line-wrap {
     display: block;
-    bottom: 1.5rem;
+    bottom: 2.2rem;
+    z-index: 20;
   }
   .hero-scroll-line {
-    height: 3.5rem;
+    height: 4rem;
+    width: 2px;
   }
 
   .section-title {
@@ -884,7 +886,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-scroll-line {
-  width: 1px;
+  width: 2px;
   height: 5rem;
   margin: 0 auto;
   background: linear-gradient(to bottom, var(--color-gold), transparent);
@@ -2581,7 +2583,9 @@ textarea.contact-field {
   }
 
   .hero-scroll-line-wrap {
-    display: none;
+    display: block;
+    bottom: 2.2rem;
+    z-index: 20;
   }
 
   .app-content {
