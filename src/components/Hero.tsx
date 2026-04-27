@@ -15,8 +15,8 @@ const Hero: React.FC = () => {
       <div className="hero-section__rings-wrap" aria-hidden>
         <motion.div className="hero-section__rings" style={{ y: bgY }}>
           <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-            <circle cx="50" cy="50" r="40" stroke="var(--color-gold)" fill="none" strokeWidth="0.22" />
-            <circle cx="50" cy="50" r="30" stroke="var(--color-gold)" fill="none" strokeWidth="0.14" />
+            <circle cx="50" cy="50" r="40" stroke="var(--color-gold)" fill="none" strokeWidth="0.42" />
+            <circle cx="50" cy="50" r="30" stroke="var(--color-gold)" fill="none" strokeWidth="0.28" />
           </svg>
         </motion.div>
       </div>

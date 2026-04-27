@@ -36,7 +36,7 @@
   --advisory-li-text: rgba(235, 235, 235, 0.95);
   --glass-bg: rgba(5, 5, 5, 0.8);
   --scrollbar-track: var(--color-black);
-  --hero-rings-opacity: 0.18;
+  --hero-rings-opacity: 0.28;
   --nav-link: rgba(255, 255, 255, 0.7);
   --nav-flag-border: rgba(255, 255, 255, 0.2);
   --nav-flag-border-hover: rgba(255, 255, 255, 0.4);
@@ -90,7 +90,7 @@
 
   --glass-bg: rgba(255, 255, 255, 0.92);
   --scrollbar-track: #f0f0f0;
-  --hero-rings-opacity: 0.11;
+  --hero-rings-opacity: 0.28;
   --nav-link: rgba(10, 10, 10, 0.62);
   --nav-flag-border: rgba(0, 0, 0, 0.12);
   --nav-flag-border-hover: rgba(0, 0, 0, 0.22);
@@ -545,11 +545,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .hero-scroll-line-wrap {
-    display: none;
+    display: block;
+    bottom: 1.5rem;
   }
-
   .hero-scroll-line {
-    height: 0;
+    height: 3.5rem;
   }
 
   .section-title {
