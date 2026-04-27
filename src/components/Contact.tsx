@@ -146,8 +146,16 @@ const Contact: React.FC = () => {
       <div className="container">
         <div className="contact-shell">
           <div className="contact-header">
-            <h2 className="section-title text-4xl">{t.contact.title}</h2>
-            <p className="contact-tagline">{t.contact.tagline}</p>
+            <span className="charter-intro__eyebrow">{t.contact.title}</span>
+            <h2 className="charter-intro__tagline contact-intro__tagline--single">
+              <span className="charter-intro__line-1">
+                {t.contact.tagline.part1}
+                <span className="charter-intro__line-2 inline italic" style={{ display: 'inline', color: '#997b3d' }}>
+                  {t.contact.tagline.gold}
+                </span>
+                {t.contact.tagline.part2}
+              </span>
+            </h2>
           </div>
 
           <div className="contact-layout">

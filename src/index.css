@@ -1021,6 +1021,10 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
+.contact-intro__tagline--single .charter-intro__line-1 {
+  display: inline-block;
+}
+
 .charter-intro__line-2 {
   color: #997b3d; /* Deeper, more sophisticated gold */
   font-style: italic;

@@ -86,8 +86,12 @@ export const translations = {
         'Discreet support for fleet strategy and aircraft buy/sell decisions. Concierge coordination and introductions to trusted operators and sellers. We set clear expectations; counterparties confirm final availability, pricing, and contracts.',
     },
     contact: {
-      title: 'Inquire Now',
-      tagline: 'Simple. Discreet. Efficient.',
+      title: 'INQUIRE NOW',
+      tagline: {
+        part1: 'Your ',
+        gold: 'mission',
+        part2: ', our priority.'
+      },
       name: 'Your Name',
       email: 'Email Address or Phone Number',
       mission: 'Mission Type',
@@ -206,8 +210,12 @@ export const translations = {
         'Asesoría discreta en estrategia de flota y decisiones de compra/venta. Coordinación tipo concierge e introducciones con operadores y vendedores de confianza. Marco claro: disponibilidad, precios y contratos los confirman las partes involucradas.',
     },
     contact: {
-      title: 'Contacto',
-      tagline: 'Simple. Discreto. Eficiente.',
+      title: 'INQUIRE NOW',
+      tagline: {
+        part1: 'Tu ',
+        gold: 'misión',
+        part2: ', nuestra prioridad.'
+      },
       name: 'Tu Nombre',
       email: 'Correo electrónico o teléfono',
       mission: 'Tipo de Misión',
@@ -326,8 +334,12 @@ export const translations = {
         "Accompagnement discret sur la flotte et les decisions achat/vente. Coordination conciergerie et introductions aupres d'operateurs et vendeurs de confiance. Cadre clair: disponibilite, tarifs et contrats sont valides par les contreparties.",
     },
     contact: {
-      title: 'Faire une Demande',
-      tagline: 'Simple. Discret. Efficace.',
+      title: 'INQUIRE NOW',
+      tagline: {
+        part1: 'Votre ',
+        gold: 'mission',
+        part2: ', notre priorité.'
+      },
       name: 'Votre Nom',
       email: 'Adresse e-mail ou numéro de téléphone',
       mission: 'Type de Mission',
