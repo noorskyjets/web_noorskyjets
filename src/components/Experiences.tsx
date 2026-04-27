@@ -9,9 +9,7 @@ const Experiences: React.FC = () => {
     target: sectionRef,
     offset: ['start end', 'end start'],
   });
-  const visualY = useTransform(scrollYProgress, [0, 1], [-30, 60]);
-  const visualScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.04, 1.02, 1.0]);
-  const veilOpacity = useTransform(scrollYProgress, [0, 0.6], [0.45, 0.72]);
+  const visualY = useTransform(scrollYProgress, [0, 1], [-16, 30]);
 
   const concepts = [
     { name: t.experiences.concepts[0].name, time: t.experiences.concepts[0].time, desc: t.experiences.concepts[0].desc },
@@ -43,16 +41,8 @@ const Experiences: React.FC = () => {
             </motion.h2>
           </div>
           <div className="experiences-visual__frame">
-            <motion.div
-              className="experiences-visual__media"
-              style={{ y: visualY, scale: visualScale }}
-              aria-hidden
-            />
-            <motion.span
-              className="experiences-visual__veil"
-              style={{ opacity: veilOpacity }}
-              aria-hidden
-            />
+            <motion.div className="experiences-visual__media" style={{ y: visualY }} aria-hidden />
+            <span className="experiences-visual__veil" aria-hidden />
           </div>
         </motion.div>
 
@@ -64,7 +54,7 @@ const Experiences: React.FC = () => {
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.14 }}
+              transition={{ duration: 0.5, delay: idx * 0.12 }}
             >
               <span className="experience-card__accent-top" aria-hidden />
               <span className="experience-card__fade" aria-hidden />

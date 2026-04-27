@@ -10,9 +10,7 @@ const Charter: React.FC = () => {
     target: sectionRef,
     offset: ['start end', 'end start'],
   });
-  const visualY = useTransform(scrollYProgress, [0, 1], [-30, 60]);
-  const visualScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.04, 1.02, 1.0]);
-  const veilOpacity = useTransform(scrollYProgress, [0, 0.6], [0.45, 0.72]);
+  const visualY = useTransform(scrollYProgress, [0, 1], [-16, 30]);
 
   const features = [
     { icon: <Award />, title: t.charter.features[0].title, desc: t.charter.features[0].desc },
@@ -47,16 +45,8 @@ const Charter: React.FC = () => {
             </motion.h2>
           </div>
           <div className="charter-visual__frame">
-            <motion.div
-              className="charter-visual__media"
-              style={{ y: visualY, scale: visualScale }}
-              aria-hidden
-            />
-            <motion.span
-              className="charter-visual__veil"
-              style={{ opacity: veilOpacity }}
-              aria-hidden
-            />
+            <motion.div className="charter-visual__media" style={{ y: visualY }} aria-hidden />
+            <span className="charter-visual__veil" aria-hidden />
           </div>
         </motion.div>
 
@@ -68,7 +58,7 @@ const Charter: React.FC = () => {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: idx * 0.14 }}
+              transition={{ duration: 0.45, delay: idx * 0.08 }}
             >
               <span className="charter-card__shine" aria-hidden />
               <span className="charter-card__vignette" aria-hidden />

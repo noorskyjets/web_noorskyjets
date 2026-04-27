@@ -613,7 +613,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .experience-card {
-  position: relative;
     min-height: 17.2rem;
   }
 
@@ -1092,9 +1091,9 @@ h1, h2, h3, h4, h5, h6 {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 1fr;
-  margin-top: -6rem; /* Negative margin to overlap sticky visual */
+  margin-top: 15rem;
   padding-top: 0;
-  z-index: 10;
+  z-index: 2;
 }
 
 @media (min-width: 768px) {
@@ -1106,7 +1105,6 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 1024px) {
   .charter-premium-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-top: -15rem; /* Increased overlap for desktop */
   }
 }
 
@@ -1551,9 +1549,7 @@ h1, h2, h3, h4, h5, h6 {
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr;
-  margin-top: -6rem;
-  position: relative;
-  z-index: 10;
+  margin-top: 15rem;
 }
 
 @media (min-width: 768px) {
@@ -1566,13 +1562,12 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 1200px) {
   .experiences-grid {
     gap: 2.25rem;
-    margin-top: -15rem;
   }
 }
+
 .experience-card {
   position: relative;
   display: flex;
-
   flex-direction: column;
   min-height: 13.5rem;
   border-radius: 8px;
@@ -1816,16 +1811,13 @@ h1, h2, h3, h4, h5, h6 {
   gap: 2rem;
   grid-template-columns: 1fr;
   align-items: stretch;
-  margin-top: -6rem;
-  position: relative;
-  z-index: 10;
+  margin-top: 15rem;
 }
 
 @media (min-width: 1024px) {
   .advisory-grid {
     grid-template-columns: 1.08fr 0.92fr;
     gap: 2.25rem;
-    margin-top: -15rem; /* Increased overlap for desktop */
   }
 }
 
@@ -2690,7 +2682,6 @@ textarea.contact-field {
   }
 
   .experience-card {
-  position: relative;
     min-height: 16.2rem;
   }
 
